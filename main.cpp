@@ -1,29 +1,22 @@
 #include <iostream>
 #include <vector>
 #include "CityGraph.hpp"
-#include "Permutation.hpp"
 #include "Timer.hpp"
+#include "tsp_algorithms.hpp"
 
-int main() {
+int main()
+{
+    CityGraph g;
+    g.loadGraph("distances.txt");
+    Timer c;
+    double cost;
+    c.startTimer();
+    cost = tsp_algorithms::brute_force::runBruteForce(10, g);
+    c.stopTimer();
+    std::cout<<c.getElapsedTimeInMilliseconds()<<std::endl;
+    std::cout<<"Cost(Brute Force): "<<cost<<std::endl;
 
-    // CityGraph *g = new CityGraph();
-    // g->loadGraph("distances.txt");
-    // g->printGraph();
-    // std::vector<double> cities = {0,1,2,5,0};
-    // std::cout<<g->calculateCostOfATour(cities);
-    int length = 8;
-     Permutation p(length); 
-     p.initS(length);
-     int total = p.fact(length);
-     Timer t;
-     t.startTimer();
-     for(int i = 0; i < total; i++)  
-     {
-       p.printS();
-       p.perm1();
-     }
-     t.stopTimer();
-     std::cout<<"Elapsed time: "<<t.getElapsedTimeInMilliseconds()<<std::endl;
+    std::cout << "Cost(Genetic): " << tsp_algorithms::genetic::runGenetic(10, 7, 10, g) << std::endl;
 
     return 0;
 }
