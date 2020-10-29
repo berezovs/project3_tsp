@@ -10,7 +10,9 @@
 
 double tsp_algorithms::brute_force::runBruteForce(int cities, CityGraph graph)
 {
-    std::vector<double> tour;
+ 
+	std::vector<double> tour;
+	
     double currentCost, bestCost;
     for (size_t i = 0; i < cities; i++)
 
@@ -18,7 +20,9 @@ double tsp_algorithms::brute_force::runBruteForce(int cities, CityGraph graph)
         tour.push_back(i);
     }
 
-    bestCost = graph.calculateCostOfATour(tour);
+
+	bestCost = graph.calculateCostOfATour(tour);
+	
     do
     {
         std::vector<double> temp(tour);
@@ -32,6 +36,7 @@ double tsp_algorithms::brute_force::runBruteForce(int cities, CityGraph graph)
 
 double tsp_algorithms::genetic::runGenetic(int numCities, int generations, int percent, CityGraph graph)
 {
+		
     int numOfPermutations = numCities * numCities * numCities;
     std::map<double, std::vector<double>> tours;
     std::vector<double> tour;
