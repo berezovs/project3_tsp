@@ -51,10 +51,10 @@ void CityGraph::loadGraph(std::string filename)
 double CityGraph::calculateCostOfATour(std::vector<double> &cities)
 {
     int from, to;
-    double totalCost;
+    double totalCost = 0.0;
     for (size_t i = 0; i < cities.size() - 1; i++)
     {
-        
+
         from = cities.at(i);
         to = cities.at(i + 1);
         totalCost += this->cityGraph.at(from).at(to);
