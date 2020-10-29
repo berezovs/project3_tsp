@@ -11,15 +11,15 @@ int main()
     Timer c;
     double cost;
     c.startTimer();
-    cost = tsp_algorithms::brute_force::runBruteForce(11, g);
+    cost = tsp_algorithms::brute_force::runBruteForce(10, g);
     c.stopTimer();
-    std::cout<<c.getElapsedTimeInMilliseconds()<<std::endl;
-    std::cout<<"Cost(Brute Force): "<<cost<<std::endl;
+    std::cout << c.getElapsedTimeInMilliseconds() << std::endl;
+    std::cout << "Cost(Brute Force): " << cost << std::endl;
 
     c.startTimer();
-    std::cout << "Cost(Genetic): " << tsp_algorithms::genetic::runGenetic(11, 100, 70, g) << std::endl;
+    std::cout << "Cost(Genetic): " << tsp_algorithms::genetic::runGenetic(10, 80, 70, g) << std::endl;
     c.stopTimer();
-    std::cout<<c.getElapsedTimeInMilliseconds()<<std::endl;
+    std::cout << c.getElapsedTimeInMilliseconds() << std::endl;
 
     return 0;
 }

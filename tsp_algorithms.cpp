@@ -14,7 +14,7 @@ double tsp_algorithms::brute_force::runBruteForce(int cities, CityGraph graph)
 	std::vector<double> tour;
 	
     double currentCost, bestCost;
-    for (size_t i = 0; i < cities; i++)
+    for (int i = 0; i < cities; i++)
 
     {
         tour.push_back(i);
