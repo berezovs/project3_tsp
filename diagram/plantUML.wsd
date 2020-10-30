@@ -1,0 +1,43 @@
+@startuml
+ 
+
+
+class CityGraph{
+    -cityGraph: std::vector<std::vector<double>>
+    -MAX_NUMBER_OF_COLS: int{static}
+    +CityGraph()
+    +calculateCostOfATour(&cities: std::vector<double>): double
+}
+
+class Timer{
+    -start: std::chrono::time_point<std::chrono::system_clock> 
+    -stop: std::chrono::time_point<std::chrono::system_clock> 
+    +Timer()
+    +startTimer(): void
+    +stopTimer(): void
+    +getElapsedTimeInMilliseconds(): int
+    +getFormattedTime(): std::string
+
+}
+    class Shell{
+        +Shell()
+        +run(): void
+    }
+
+    class TSPAlgorithms{
+    -tour: std::vector<double>
+    +TSPAlgorithms()
+    +runBruteForce(numCities:int, graph:CityGraph): double
+    +runGenetic(numCities: int, generations: int, percent: int, graph: CityGraph, numOfPermutations: int): void
+    -generatePermutations(&tours: std::map<double, std::vector<double>>, graph CityGraph, percent: int): void
+    -mutateTours(&tours std::map<double, std::vector<double>>, graph: CityGraph, percent: int, rng: std::default_random_engine): void
+    -generateFirstTour(cities: int): void
+}
+    
+    
+    TSPAlgorithms--Shell
+    TSPAlgorithms--CityGraph
+    Shell--CityGraph
+    Shell--Timer
+    
+@enduml
