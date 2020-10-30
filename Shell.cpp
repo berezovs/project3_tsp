@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Shell.hpp"
-#include "tsp_algorithms.hpp"
+#include "TSPAlgorithms.hpp"
 #include "CityGraph.hpp"
 #include "Timer.hpp"
 
@@ -32,17 +32,19 @@ void Shell::run()
 
     std::cout << "Starting the algorithm...\n";
     CityGraph g;
-    g.loadGraph("distances.txt");
     Timer c;
+    TSPAlgorithms tsp;
+    g.loadGraph("distances.txt");
+    
     double cost;
     c.startTimer();
-    cost = tsp_algorithms::brute_force::runBruteForce(numCities, g);
+    cost =tsp.runBruteForce(numCities, g);
     c.stopTimer();
     std::cout << "Time the brute force algorithm took: " << c.getFormattedTime() << std::endl;
     std::cout << "Cost(Brute Force): " << cost << std::endl;
 
     c.startTimer();
-    cost = tsp_algorithms::genetic::runGenetic(numCities, numGenerations, percentMutations, g, numTours);
+    cost = tsp.runGenetic(numCities, numGenerations, percentMutations, g, numTours);
     c.stopTimer();
     std::cout << "\nTime the genetic algorithm took: " << c.getFormattedTime() << std::endl;
     std::cout << "Cost(Genetic): " << cost << std::endl;
