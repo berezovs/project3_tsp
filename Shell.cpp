@@ -38,12 +38,12 @@ void Shell::run()
     c.startTimer();
     cost = tsp_algorithms::brute_force::runBruteForce(numCities, g);
     c.stopTimer();
-    std::cout << "Time the brute force algorithm took: " << c.getElapsedTimeInMilliseconds() << " milliseconds." << std::endl;
+    std::cout << "Time the brute force algorithm took: " << c.getFormattedTime() << std::endl;
     std::cout << "Cost(Brute Force): " << cost << std::endl;
 
     c.startTimer();
     cost = tsp_algorithms::genetic::runGenetic(numCities, numGenerations, percentMutations, g, numTours);
     c.stopTimer();
-    std::cout << "\nTime the genetic algorithm took: " << c.getElapsedTimeInMilliseconds() << " milliseconds." << std::endl;
+    std::cout << "\nTime the genetic algorithm took: " << c.getFormattedTime() << std::endl;
     std::cout << "Cost(Genetic): " << cost << std::endl;
 }
