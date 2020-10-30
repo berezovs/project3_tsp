@@ -1,3 +1,10 @@
+/***************************************************************
+  Student Name:Serghei Berezovschi
+  File Name: Timer.cpp
+  Assignment number:Project 3-DS&AII
+
+ 
+***************************************************************/
 #include <chrono>
 #include "Timer.hpp"
 

@@ -1,10 +1,17 @@
+/***************************************************************
+  Student Name:Serghei Berezovschi
+  File Name: TSPAlgorithms.cpp
+  Assignment number:Project 3-DS&AII
+
+ 
+***************************************************************/
+
 #include "TSPAlgorithms.hpp"
 #include "CityGraph.hpp"
 #include <algorithm>
 #include <vector>
 #include <map>
 #include <stack>
-#include <algorithm>
 #include <random>
 #include <iostream>
 

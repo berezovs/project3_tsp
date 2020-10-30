@@ -1,3 +1,10 @@
+/***************************************************************
+  Student Name:Serghei Berezovschi
+  File Name: TSPAlgorithms.hpp
+  Assignment number:Project 3-DS&AII
+
+ 
+***************************************************************/
 #ifndef TSP_ALGORITHMS_H
 #define TSP_ALGORITHMS_H
 #include <map>

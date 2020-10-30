@@ -1,7 +1,13 @@
+/***************************************************************
+  Student Name:Serghei Berezovschi
+  File Name: CityGraph.cpp
+  Assignment number:Project 3-DS&AII
+
+ 
+***************************************************************/
 #ifndef CITYGRAPH_H
 #define CITYGRAPH_H
 #include <vector>
-#include <deque>
 #include <string>
 class CityGraph
 {

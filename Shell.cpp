@@ -1,3 +1,10 @@
+/***************************************************************
+  Student Name:Serghei Berezovschi
+  File Name: Shell.cpp
+  Assignment number:Project 3-DS&AII
+
+ 
+***************************************************************/
 #include <iostream>
 #include "Shell.hpp"
 #include "TSPAlgorithms.hpp"
