@@ -1,6 +1,7 @@
 #ifndef CITYGRAPH_H
 #define CITYGRAPH_H
 #include <vector>
+#include <deque>
 #include <string>
 class CityGraph
 {

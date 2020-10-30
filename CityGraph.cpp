@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <deque>
 #include "CityGraph.hpp"
 
 CityGraph::CityGraph()
@@ -16,7 +17,7 @@ void CityGraph::loadGraph(std::string filename)
 
     {
         double number;
-		int column=0, row=0;
+        int column = 0, row = 0;
         std::vector<double> vector;
         while (in >> number)
         {
@@ -59,17 +60,15 @@ double CityGraph::calculateCostOfATour(std::vector<double> &cities)
         from = cities.at(i);
         to = cities.at(i + 1);
         totalCost += this->cityGraph.at(from).at(to);
-		
     }
     return totalCost;
-
 }
 
 void CityGraph::printGraph()
 {
-		std::cout<<"Height: "<<this->cityGraph.size()<<std::endl;
-		std::cout<<"Length: "<<this->cityGraph.at(0).size()<<std::endl;
-		std::cout<<MAX_NUMBER_OF_COLS<<std::endl;
+    std::cout << "Height: " << this->cityGraph.size() << std::endl;
+    std::cout << "Length: " << this->cityGraph.at(0).size() << std::endl;
+    std::cout << MAX_NUMBER_OF_COLS << std::endl;
     for (size_t i = 0; i < this->cityGraph.size(); i++)
     {
         for (size_t j = 0; j < this->cityGraph.at(i).size(); j++)

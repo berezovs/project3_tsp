@@ -15,7 +15,7 @@ namespace tsp_algorithms
     namespace genetic
     {
         
-        double runGenetic(int numCities, int generations, int percent, CityGraph graph);
+        double runGenetic(int numCities, int generations, int percent, CityGraph graph, int numOfPermutations);
         void generatePermutations(std::map<double, std::vector<double>> &tours, std::vector<double> &currentTour, CityGraph graph, int numPerms);
         void mutateTours(std::map<double, std::vector<double>> &tours, CityGraph graph, int percent, std::default_random_engine rng);
     } // namespace genetic

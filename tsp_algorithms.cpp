@@ -2,6 +2,7 @@
 #include "CityGraph.hpp"
 #include <algorithm>
 #include <vector>
+#include <deque>
 #include <map>
 #include <stack>
 #include <algorithm>
@@ -10,23 +11,23 @@
 
 double tsp_algorithms::brute_force::runBruteForce(int cities, CityGraph graph)
 {
- 
-	std::vector<double> tour;
-	
+
+    std::vector<double> tour;
+
     double currentCost, bestCost;
-    for (int i = 0; i < cities; i++)
+    for (int i = 1; i <= cities; i++)
 
     {
         tour.push_back(i);
     }
 
+    bestCost = graph.calculateCostOfATour(tour);
 
-	bestCost = graph.calculateCostOfATour(tour);
-	
     do
     {
         std::vector<double> temp(tour);
-        temp.push_back(temp.at(0));
+        temp.push_back(0);
+        temp.insert(temp.begin(),0);
         currentCost = graph.calculateCostOfATour(temp);
         if (currentCost < bestCost)
             bestCost = currentCost;
@@ -34,15 +35,15 @@ double tsp_algorithms::brute_force::runBruteForce(int cities, CityGraph graph)
     return bestCost;
 }
 
-double tsp_algorithms::genetic::runGenetic(int numCities, int generations, int percent, CityGraph graph)
+double tsp_algorithms::genetic::runGenetic(int numCities, int generations, int percent, CityGraph graph, int numOfPermutations)
 {
-		
-    int numOfPermutations = numCities * numCities * numCities;
+
+
     std::map<double, std::vector<double>> tours;
     std::vector<double> tour;
     std::default_random_engine rng = std::default_random_engine{};
 
-    for (int i = 0; i < numCities; i++)
+    for (int i = 1; i <= numCities; i++)
     {
         tour.push_back(i);
     }
@@ -53,20 +54,7 @@ double tsp_algorithms::genetic::runGenetic(int numCities, int generations, int p
         generatePermutations(tours, tour, graph, numOfPermutations);
         mutateTours(tours, graph, percent, rng);
     }
-    //     for (int i = 0; i < numOfPermutations; i++)
-    //     {
 
-    //         std::next_permutation(tour.begin(), tour.end());
-    //         double currentCost = graph.calculateCostOfATour(tour);
-    //         elites.insert(std::pair<double, std::vector<double>>(currentCost, tour));
-    //     }
-    //     std::map<double, std::vector<double>>::iterator from = elites.begin();
-    //     ++from;
-    //     ++from;
-    //     std::cout << "Size of map: " << elites.size() << std::endl;
-    //     elites.erase(from, elites.end());
-
-    //     std::cout << "Size of map: " << elites.size() << std::endl;
     return (tours.begin())->first;
 }
 
@@ -79,7 +67,8 @@ void tsp_algorithms::genetic::generatePermutations(std::map<double, std::vector<
         std::vector<double> temp(currentTour);
         double currentCost;
         //push the first value to the end of temp as the last destination in the trip
-        temp.push_back(temp.at(0));
+        temp.push_back(0);
+        temp.insert(temp.begin(), 0);
         currentCost = graph.calculateCostOfATour(temp);
         tours.insert(std::pair<double, std::vector<double>>(currentCost, currentTour));
     }
@@ -90,7 +79,6 @@ void tsp_algorithms::genetic::mutateTours(std::map<double, std::vector<double>> 
     std::stack<std::vector<double>> tempTours;
     double ratio = (double)percent / (double)100;
     int numOfToursToMutate = tours.size() * ratio;
-    
 
     auto it = tours.begin();
     for (int i = 0; i < numOfToursToMutate; i++)
