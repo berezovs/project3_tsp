@@ -26,8 +26,8 @@ class Timer{
 
     class TSPAlgorithms{
     -tour: std::vector<double>
-    -geneticCost;
-    -brutForceCost;
+    -geneticCost: int;
+    -bruteForceCost: int;
     +TSPAlgorithms()
     +runBruteForce(numCities:int, graph:CityGraph): double
     +runGenetic(numCities: int, generations: int, percent: int, graph: CityGraph, numOfPermutations: int): void

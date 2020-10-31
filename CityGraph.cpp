@@ -15,6 +15,7 @@ CityGraph::CityGraph()
 {
 }
 
+//loads distances into a 20x20 matrix
 void CityGraph::loadGraph(std::string filename)
 {
     std::ifstream in(filename);
@@ -55,6 +56,7 @@ void CityGraph::loadGraph(std::string filename)
     in.close();
 }
 
+//calculates and returns the cost of a tour as a double
 double CityGraph::calculateCostOfATour(std::vector<double> &cities)
 {
     int from, to;
@@ -70,17 +72,4 @@ double CityGraph::calculateCostOfATour(std::vector<double> &cities)
     return totalCost;
 }
 
-void CityGraph::printGraph()
-{
-    std::cout << "Height: " << this->cityGraph.size() << std::endl;
-    std::cout << "Length: " << this->cityGraph.at(0).size() << std::endl;
-    std::cout << MAX_NUMBER_OF_COLS << std::endl;
-    for (size_t i = 0; i < this->cityGraph.size(); i++)
-    {
-        for (size_t j = 0; j < this->cityGraph.at(i).size(); j++)
-        {
-            std::cout << this->cityGraph.at(i).at(j) << " ";
-        }
-        std::cout << std::endl;
-    }
-}
+

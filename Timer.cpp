@@ -11,23 +11,25 @@
 Timer::Timer()
 {
 }
-
+//starts timer
 void Timer::startTimer()
 {
     start = std::chrono::system_clock::now();
 }
-
+//stops timer
 void Timer::stopTimer()
 {
     stop = std::chrono::system_clock::now();
 }
 
+//returns an integer representing the number of elapsed milliseconds
 int Timer::getElapsedTimeInMilliseconds()
 {
     std::chrono::duration<double> diff = stop - start;
     return diff.count() * 1000;
 }
 
+//returns a string representing the  number of milliseconds, seconds or minutes measured
 std::string Timer::getFormattedTime()
 {
     int elapsedTime = this->getElapsedTimeInMilliseconds();

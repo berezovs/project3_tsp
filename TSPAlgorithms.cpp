@@ -21,6 +21,8 @@ TSPAlgorithms::TSPAlgorithms()
     this->geneticCost = 0.0;
 }
 
+//runs the bruteforce algorithm
+//returns the cost of the algorithm as a double
 double TSPAlgorithms::runBruteForce(int numCities, CityGraph graph)
 {
 
@@ -46,6 +48,8 @@ double TSPAlgorithms::runBruteForce(int numCities, CityGraph graph)
     return this->bruteForceCost;
 }
 
+//starts the genetic algorithms and runs it for the required number of generations
+//returns the cost of the algorithm as a double
 double TSPAlgorithms::runGenetic(int numCities, int generations, int percent, CityGraph graph, int numOfPermutations)
 {
 
@@ -66,6 +70,7 @@ double TSPAlgorithms::runGenetic(int numCities, int generations, int percent, Ci
     return this->geneticCost;
 }
 
+//fills up the ordered map with permuted vectors representing individual tours
 void TSPAlgorithms::generatePermutations(std::map<double, std::vector<double>> &tours, std::vector<double> &currentTour, CityGraph graph, int numPerms)
 {
 
@@ -82,6 +87,9 @@ void TSPAlgorithms::generatePermutations(std::map<double, std::vector<double>> &
     }
 }
 
+//shuffles the each vector representing a permutation in the map and places it in a stack
+//deletes all  permutations from the map except for two elites
+//copies all the mutated tours from the stack into the map along with their costs
 void TSPAlgorithms::mutateTours(std::map<double, std::vector<double>> &tours, CityGraph graph, int percent, std::default_random_engine rng)
 {
     std::stack<std::vector<double>> tempTours;
@@ -114,6 +122,7 @@ void TSPAlgorithms::mutateTours(std::map<double, std::vector<double>> &tours, Ci
     }
 }
 
+//fills up a vector with cities representing the first tour
 void TSPAlgorithms::generateFirstTour(int cities)
 {
     for (int i = 1; i <= cities; i++)
@@ -122,7 +131,7 @@ void TSPAlgorithms::generateFirstTour(int cities)
         this->tour.push_back(i);
     }
 }
-
+//calculates and returns the percent of optimal cost
 int TSPAlgorithms::percentOfOptimal()
 {
     if (this->bruteForceCost == 0.0 || this->geneticCost == 0.0)
