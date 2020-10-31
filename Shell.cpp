@@ -37,16 +37,18 @@ void Shell::run()
         std::cin.clear();
     }
 
-    std::cout << "Starting the algorithm...\n";
+    std::cout << "Running the algorithm...\n";
     CityGraph g;
     Timer c;
     TSPAlgorithms tsp;
     g.loadGraph("distances.txt");
-    
+
     double cost;
     c.startTimer();
-    cost =tsp.runBruteForce(numCities, g);
+    cost = tsp.runBruteForce(numCities, g);
     c.stopTimer();
+
+    std::cout << "Number of cities run: " << numCities << std::endl;
     std::cout << "Time the brute force algorithm took: " << c.getFormattedTime() << std::endl;
     std::cout << "Cost(Brute Force): " << cost << std::endl;
 
@@ -55,4 +57,5 @@ void Shell::run()
     c.stopTimer();
     std::cout << "\nTime the genetic algorithm took: " << c.getFormattedTime() << std::endl;
     std::cout << "Cost(Genetic): " << cost << std::endl;
+    std::cout << "Percent of optimal: " << tsp.percentOfOptimal() << std::endl;
 }

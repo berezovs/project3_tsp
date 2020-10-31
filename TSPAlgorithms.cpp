@@ -17,18 +17,20 @@
 
 TSPAlgorithms::TSPAlgorithms()
 {
+    this->bruteForceCost = 0.0;
+    this->geneticCost = 0.0;
 }
 
 double TSPAlgorithms::runBruteForce(int numCities, CityGraph graph)
 {
 
-    double currentCost=0.0, bestCost=0.0;
+    double currentCost = 0.0;
     this->generateFirstTour(numCities);
-    
+
     std::vector<double> temp(this->tour);
     temp.push_back(0);
     temp.insert(temp.begin(), 0);
-    bestCost = graph.calculateCostOfATour(temp);
+    this->bruteForceCost = graph.calculateCostOfATour(temp);
 
     do
     {
@@ -36,12 +38,12 @@ double TSPAlgorithms::runBruteForce(int numCities, CityGraph graph)
         temp.push_back(0);
         temp.insert(temp.begin(), 0);
         currentCost = graph.calculateCostOfATour(temp);
-        if (currentCost < bestCost)
-            bestCost = currentCost;
+        if (currentCost < this->bruteForceCost)
+            this->bruteForceCost = currentCost;
     } while (std::next_permutation(this->tour.begin(), this->tour.end()));
 
     this->tour.clear();
-    return bestCost;
+    return this->bruteForceCost;
 }
 
 double TSPAlgorithms::runGenetic(int numCities, int generations, int percent, CityGraph graph, int numOfPermutations)
@@ -59,7 +61,9 @@ double TSPAlgorithms::runGenetic(int numCities, int generations, int percent, Ci
         mutateTours(tours, graph, percent, rng);
     }
     this->tour.clear();
-    return (tours.begin())->first;
+
+    this->geneticCost = tours.begin()->first;
+    return this->geneticCost;
 }
 
 void TSPAlgorithms::generatePermutations(std::map<double, std::vector<double>> &tours, std::vector<double> &currentTour, CityGraph graph, int numPerms)
@@ -116,5 +120,15 @@ void TSPAlgorithms::generateFirstTour(int cities)
 
     {
         this->tour.push_back(i);
+    }
+}
+
+int TSPAlgorithms::percentOfOptimal()
+{
+    if (this->bruteForceCost == 0.0 || this->geneticCost == 0.0)
+        return 0;
+    else
+    {
+        return (this->geneticCost / (this->bruteForceCost / 100));
     }
 }

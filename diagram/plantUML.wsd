@@ -26,9 +26,12 @@ class Timer{
 
     class TSPAlgorithms{
     -tour: std::vector<double>
+    -geneticCost;
+    -brutForceCost;
     +TSPAlgorithms()
     +runBruteForce(numCities:int, graph:CityGraph): double
     +runGenetic(numCities: int, generations: int, percent: int, graph: CityGraph, numOfPermutations: int): void
+    +percentOfOptimal(): int
     -generatePermutations(&tours: std::map<double, std::vector<double>>, graph CityGraph, percent: int): void
     -mutateTours(&tours std::map<double, std::vector<double>>, graph: CityGraph, percent: int, rng: std::default_random_engine): void
     -generateFirstTour(cities: int): void
